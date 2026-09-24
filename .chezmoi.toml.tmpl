@@ -1,0 +1,12 @@
+{{- /* Asked once per machine, then cached in ~/.config/chezmoi/chezmoi.toml. */ -}}
+{{- $name := promptStringOnce . "name" "Full name for git commits" -}}
+{{- $email := promptStringOnce . "email" "Email for git commits" -}}
+
+[data]
+    name = {{ $name | quote }}
+    email = {{ $email | quote }}
+    # Where secret values come from. Not decided yet, so nothing reads secrets.
+    # Templates branch on this; wiring in a password manager later means
+    # changing this line and the `if` blocks, not restructuring the repository.
+    #   "none" | "bitwarden" | "onepassword"
+    secrets = "none"

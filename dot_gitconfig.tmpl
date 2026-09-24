@@ -1,0 +1,18 @@
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+# gh keeps the GitHub token in the desktop keyring; git asks gh for it.
+# These are the lines `gh auth setup-git` writes.
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+{{- if ne .secrets "none" }}
+# Commit signing key, pulled from the password manager, goes here.
+{{- end }}
