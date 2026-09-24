@@ -1,6 +1,0 @@
-{
-  // Rootless podman as the devcontainer engine. The image has no Docker and no
-  // docker group; the per-user podman.socket is enabled for every account.
-  "dev.containers.dockerPath": "podman",
-  "dev.containers.dockerComposePath": "podman-compose"
-}
