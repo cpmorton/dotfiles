@@ -2,7 +2,7 @@
 
 The per-user half of my daily driver: only what must live in a home *and* is
 personal. Everything else was moved into the OS image,
-[`daily-driver-os`](https://github.com/OWNER/daily-driver-os); its decision
+[`daily-driver-os`](https://github.com/cpmorton/daily-driver-os); its decision
 record 0004 ("Where software and configuration go") is the rule for what
 belongs here.
 
