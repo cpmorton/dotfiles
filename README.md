@@ -6,16 +6,25 @@ personal. Everything else was moved into the OS image,
 record 0004 ("Where software and configuration go") is the rule for what
 belongs here.
 
-    ujust dotfiles <github-user>    # first time, in each fresh home
-    chezmoi update                  # afterwards
+Nothing to run, usually. When localadmin names this repository for a user (in
+the machine defaults, at first boot, or with `ujust homed-user`), the image
+applies it at that user's first login and updates it at every login and daily;
+see its decision record 0024. By hand, only when a notification asks, or in a
+home nobody named a repository for:
+
+    ujust dotfiles [<github-user>]
+
+Applied with nobody at the keyboard, so **every prompt needs a default**
+(`promptStringOnce . "key" "question" "default"`), and scripts that need a
+terminal check for one and skip without it.
 
 ## What's here, and where it came from
 
 | File | Becomes | Why it isn't in the image |
 | --- | --- | --- |
-| `.chezmoi.toml.tmpl` | `~/.config/chezmoi/chezmoi.toml` | Asks for name and email once per machine; holds the `secrets` switch |
+| `.chezmoi.toml.tmpl` | `~/.config/chezmoi/chezmoi.toml` | Name and email, once per machine: unattended, your account's full name and GitHub's no-reply address. Holds the `secrets` switch |
 | `dot_gitconfig.tmpl` | `~/.gitconfig` | Your name and email are personal. Git's defaults and the gh credential helper are system-wide in the image's `/etc/gitconfig` |
-| `run_once_after_20-github-auth.sh` | nothing on disk | `gh auth login` stores a token in your keyring: a secret, per user |
+| `run_after_20-github-auth.sh` | nothing on disk | `gh auth login` stores a token in your keyring: a secret, per user. Runs on every apply, so the sign-in waits for one with a terminal |
 
 ## Moved out of this repository
 
